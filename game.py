@@ -2,7 +2,7 @@ import requests
 import random
 import threading
 
-key = "ff28efc1-7227-4bef-9a1e-7b787099217"
+key = "ff28efc1-7227-4bef-9a1e"
 
 def get_status(api_key):
     return requests.get("https://connect4.minsky.co/api/status", headers={"api-key": api_key})
@@ -24,7 +24,6 @@ def bot_choice(board):
     if r.json()['code'] == 18:
         threading.Timer(20, full_play, [key]).start()
     
-
 def full_play(key):
     r = get_status(key)
     if r.status_code == 200:
