@@ -19,7 +19,13 @@ def leave_game(api_key):
 def bot_choice(board):
     for row in board:
         print(row)
-    r = play(key, str(random.choice([0,1,2,3,4,5,6])))
+
+    valid_columns = []
+    for c in range(board[0]):
+        if board[0][c] == 0:
+            valid_columns.append(c)
+    
+    r = play(key, str(random.choice(valid_columns)))
     print(r.json())
     if r.json()['code'] == 18:
         threading.Timer(20, full_play, [key]).start()
@@ -43,4 +49,3 @@ def full_play(key):
         print(r.content)
 
 full_play(key)
-# leave_game(key)
